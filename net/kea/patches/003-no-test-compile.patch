@@ -81,8 +81,8 @@
 --- a/src/hooks/dhcp/high_availability/Makefile.am
 +++ b/src/hooks/dhcp/high_availability/Makefile.am
 @@ -1,4 +1,4 @@
--SUBDIRS = . tests
-+SUBDIRS = .
+-SUBDIRS = . libloadtests tests
++SUBDIRS = . libloadtests
  
  AM_CPPFLAGS  = -I$(top_builddir)/src/lib -I$(top_srcdir)/src/lib
  AM_CPPFLAGS += $(BOOST_INCLUDES)
@@ -206,8 +206,8 @@
 -SUBDIRS = . testutils tests benchmarks
 +SUBDIRS = . benchmarks
  
- dhcp_data_dir = @localstatedir@/@PACKAGE@
- kea_lfc_location = @prefix@/sbin/kea-lfc
+ # DATA_DIR is the directory where to put default CSV files and the DHCPv6
+ # server ID file (i.e. the file where the server finds its DUID at startup).
 --- a/src/lib/dns/Makefile.am
 +++ b/src/lib/dns/Makefile.am
 @@ -1,6 +1,6 @@
@@ -252,11 +252,9 @@
  AM_CPPFLAGS += $(BOOST_INCLUDES)
 --- a/src/lib/log/Makefile.am
 +++ b/src/lib/log/Makefile.am
-@@ -2,7 +2,6 @@ SUBDIRS = interprocess .
- if !CROSS_COMPILING
- SUBDIRS += compiler
- endif
--SUBDIRS += tests
+@@ -1,4 +1,4 @@
+-SUBDIRS = interprocess . compiler tests
++SUBDIRS = interprocess . compiler
  
  AM_CPPFLAGS = -I$(top_builddir)/src/lib -I$(top_srcdir)/src/lib
  AM_CPPFLAGS += $(BOOST_INCLUDES)
@@ -289,9 +287,9 @@
 @@ -1,4 +1,4 @@
 -SUBDIRS = . testutils tests
 +SUBDIRS = .
- dhcp_data_dir = @localstatedir@/@PACKAGE@
+ # DATA_DIR is the directory where to put PID files.
+ dhcp_data_dir = @runstatedir@/@PACKAGE@
  AM_CPPFLAGS  = -I$(top_builddir)/src/lib -I$(top_srcdir)/src/lib
- AM_CPPFLAGS += -DDATA_DIR="\"$(dhcp_data_dir)\""
 --- a/src/lib/stats/Makefile.am
 +++ b/src/lib/stats/Makefile.am
 @@ -1,4 +1,4 @@
@@ -305,19 +303,11 @@
 @@ -1,6 +1,6 @@
  AUTOMAKE_OPTIONS = subdir-objects
  
--SUBDIRS = . io unittests tests python threads
-+SUBDIRS = . io python threads
+-SUBDIRS = . io unittests tests python
++SUBDIRS = . io unittests python
  
  AM_CPPFLAGS = -I$(top_srcdir)/src/lib -I$(top_builddir)/src/lib
  AM_CPPFLAGS += $(BOOST_INCLUDES)
---- a/src/lib/util/threads/Makefile.am
-+++ b/src/lib/util/threads/Makefile.am
-@@ -1,4 +1,4 @@
--SUBDIRS = . tests
-+SUBDIRS = .
- AM_CXXFLAGS = $(KEA_CXXFLAGS)
- 
- AM_CPPFLAGS = -I$(top_srcdir)/src/lib -I$(top_builddir)/src/lib
 --- a/src/lib/yang/Makefile.am
 +++ b/src/lib/yang/Makefile.am
 @@ -1,4 +1,4 @@
